@@ -2,17 +2,17 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const player = require("../client/player");
 
 module.exports = {
-  data: new SlashCommandBuilder().setName("pause").setDescription("Dừng nhạc"),
+  data: new SlashCommandBuilder().setName("stop").setDescription("Xóa danh sách và tắt nhạc"),
   async execute(interaction) {
     const queue = player.getQueue(interaction.guildId);
 
-    if (!queue?.playing)
+    if (!queue)
       return interaction.reply({
-        content: "Không có nhạc đang phát",
+        content: "Không có danh sách nhạc",
       });
 
-    queue.setPaused(true);
+    queue.destroy();
 
-    await interaction.reply({ content: "⏸ | Đã dừng" });
+    await interaction.reply({ content: "⏹ | Đã tắt" })
   },
 };

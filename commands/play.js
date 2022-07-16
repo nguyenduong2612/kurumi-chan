@@ -10,7 +10,7 @@ module.exports = {
     .addStringOption((option) =>
       option
         .setName("title")
-        .setDescription("Tên hoặc URL bài hát/playlist (Youtube)")
+        .setDescription("Tên hoặc URL bài hát/playlist (Youtube/Soundcloud/Spotify)")
         .setRequired(true)
     ),
   async execute(interaction) {
@@ -32,6 +32,8 @@ module.exports = {
       metadata: {
         channel: interaction.channel,
       },
+      leaveOnEnd: false,
+      leaveOnStop: false,
     });
 
     try {
@@ -55,10 +57,10 @@ module.exports = {
 
     if (searchResult.playlist) {
       queue.addTracks(searchResult.tracks)
-      await interaction.followUp({ content: `Đã thêm playlist **${searchResult.playlist.title}**!` });
+      await interaction.followUp({ content: `✅ | Đã thêm playlist **${searchResult.playlist.title}**!` });
     } else {
       queue.addTrack(searchResult.tracks[0]);
-      await interaction.followUp({ content: `Đã thêm **${searchResult.tracks[0].title}**!` });
+      await interaction.followUp({ content: `✅ | Đã thêm **${searchResult.tracks[0].title}**!` });
     }
 
     if (!queue.playing) await queue.play();

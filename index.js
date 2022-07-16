@@ -2,7 +2,8 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, Intents } = require("discord.js");
-const { token } = require("./config.json");
+const { clientId, token } = require("./config.json");
+const { registerSlashCommands } = require("./deploy-commands");
 
 // Create a new client instance
 const client = new Client({
@@ -31,7 +32,12 @@ for (const file of commandFiles) {
 }
 
 // When the client is ready, run this code (only once)
-client.once("ready", () => {
+client.once("ready", async () => {
+  try {
+    await registerSlashCommands(clientId);
+  } catch (err) {
+    console.error(`Could not register commands for a server!, ${err.message}`);
+  }
   console.log("Kurumi is ready!");
   client.user.setActivity("with umih4ra", { type: "PLAYING" });
 });

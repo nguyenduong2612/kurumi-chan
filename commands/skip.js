@@ -12,8 +12,8 @@ module.exports = {
       });
 
     queue.skip();
+    queue.setPaused(false);
 
-    interaction.deferReply();
-    interaction.deleteReply();
+    await interaction.reply({ content: "⏩ | Đã chuyển bài" })
   },
 };
