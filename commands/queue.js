@@ -6,17 +6,17 @@ module.exports = {
   async execute(interaction) {
     const queue = player.getQueue(interaction.guildId);
 
-    if (!queue)
-      return interaction.reply({
-        content: "Không có danh sách nhạc",
-      });
+    if (!queue) {
+      await interaction.reply({ content: "Không có danh sách nhạc" });
+      return;
+    }
 
     const currentTrack = queue.current;
     const tracks = queue.tracks.slice(0, 10).map((m, i) => {
       return `${i + 1}. [**${m.title}**](${m.url}) - ${m.requestedBy.tag}`;
     });
 
-    return interaction.reply({
+    await interaction.reply({
       embeds: [
         {
           title: "Danh sách nhạc",

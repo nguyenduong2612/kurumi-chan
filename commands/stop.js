@@ -7,10 +7,10 @@ module.exports = {
   async execute(interaction) {
     const queue = player.getQueue(interaction.guildId);
 
-    if (!queue)
-      return interaction.reply({
-        content: "Không có danh sách nhạc",
-      });
+    if (!queue) {
+      await interaction.reply({ content: "Không có danh sách nhạc" });
+      return;
+    }
 
     queue.destroy();
 

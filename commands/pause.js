@@ -6,10 +6,10 @@ module.exports = {
   async execute(interaction) {
     const queue = player.getQueue(interaction.guildId);
 
-    if (!queue?.playing)
-      return interaction.reply({
-        content: "Không có nhạc đang phát",
-      });
+    if (!queue?.playing) {
+      await interaction.reply({ content: "Không có nhạc đang phát" })
+      return;
+    }
 
     queue.setPaused(true);
 

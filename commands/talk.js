@@ -23,7 +23,7 @@ module.exports = {
   async execute(interaction) {
     const memberVoice = interaction.member.voice;
     if (!memberVoice.channel) {
-      await interaction.reply("Please join a voice channel first");
+      await interaction.reply("Chưa vào kênh voice chat!");
       return;
     }
 

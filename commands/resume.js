@@ -8,7 +8,7 @@ module.exports = {
 
     queue.setPaused(false);
 
-    interaction.deferReply();
-    interaction.deleteReply();
+    await interaction.deferReply();
+    await interaction.deleteReply();
   },
 };

@@ -6,7 +6,7 @@ const player = require("../client/player");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("play")
-    .setDescription("Thêm nhạc")
+    .setDescription("Thêm nhạc vào danh sách")
     .addStringOption((option) =>
       option
         .setName("title")
@@ -41,10 +41,11 @@ module.exports = {
         await queue.connect(interaction.member.voice.channel);
     } catch {
       queue.destroy();
-      return await interaction.reply({
+      await interaction.reply({
         content: "Không vào được kênh voice chat!",
         ephemeral: true,
       });
+      return;
     }
 
     await interaction.deferReply();
@@ -53,7 +54,10 @@ module.exports = {
       searchEngine: QueryType.AUTO,
     })
 
-    if (!searchResult) return await interaction.reply({ content: `❌ | Không tìm thấy **${input}**` });
+    if (!searchResult) {
+      await interaction.followUp({ content: `❌ | Không tìm thấy **${input}**` });
+      return;
+    } 
 
     if (searchResult.playlist) {
       queue.addTracks(searchResult.tracks)
