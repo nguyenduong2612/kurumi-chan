@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { getVoiceConnection } = require("@discordjs/voice");
 const player = require("../client/player");
 
 module.exports = {
@@ -12,6 +13,9 @@ module.exports = {
       });
 
     queue.destroy();
+
+    const connection = getVoiceConnection(interaction.member.voice.channel.guildId);
+    if (connection) connection.destroy();
 
     await interaction.reply({ content: "⏹ | Đã tắt" })
   },

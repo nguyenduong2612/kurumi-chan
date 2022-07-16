@@ -4,11 +4,11 @@ const { joinVoiceChannel } = require("@discordjs/voice");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("join")
-    .setDescription("Join channel"),
+    .setDescription("Vào kênh voice chat"),
   async execute(interaction) {
     const memberVoice = interaction.member.voice;
     if (!memberVoice.channel) {
-      await interaction.reply("Please join a voice channel first");
+      await interaction.reply("Chưa vào kênh voice chat!");
       return;
     }
 
@@ -18,6 +18,6 @@ module.exports = {
       adapterCreator: memberVoice.channel.guild.voiceAdapterCreator,
     });
 
-    await interaction.reply("Joined");
+    await interaction.reply("Đã vào voice chat");
   },
 };

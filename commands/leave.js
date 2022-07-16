@@ -8,7 +8,7 @@ module.exports = {
   async execute(interaction) {
     const memberVoice = interaction.member.voice;
     if (!memberVoice.channel) {
-      await interaction.reply("Please join a voice channel first");
+      await interaction.reply("Chưa vào kênh voice chat!");
       return;
     }
 
@@ -19,6 +19,6 @@ module.exports = {
       return;
     }
 
-    await interaction.reply("I am not joining any channel");
+    await interaction.reply("Hiện Kurumi không ở trong voice chat");
   },
 };
