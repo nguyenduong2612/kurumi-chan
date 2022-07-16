@@ -2,7 +2,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
-const { token } = require("./config.json");
+const { token } = process.env;
 
 module.exports.registerSlashCommands = async (clientId) => {
   const commands = [];
