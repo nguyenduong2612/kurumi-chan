@@ -5,19 +5,28 @@
   "main": "index.js",
   "dependencies": {
     "@discordjs/builders": "^0.14.0",
+    "@discordjs/opus": "^0.8.0",
     "@discordjs/rest": "^0.5.0",
     "@discordjs/voice": "^0.10.0",
+    "cross-fetch": "^3.1.5",
     "discord-api-types": "^0.33.5",
+    "discord-player": "^5.2.2",
     "discord.js": "^13.8.1",
     "dotenv": "^16.0.1",
-    "heroku-client": "^3.1.0"
+    "ffmpeg-static": "^5.0.2",
+    "heroku-client": "^3.1.0",
+    "libsodium-wrappers": "^0.7.10",
+    "node-fetch": "^2.6.6",
+    "undici": "^4.13.0"
   },
   "devDependencies": {
     "eslint": "^8.19.0",
     "nodemon": "^2.0.19"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "umih4ra",
   "license": "MIT"

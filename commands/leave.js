@@ -4,7 +4,7 @@ const { getVoiceConnection } = require("@discordjs/voice");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("leave")
-    .setDescription("Leave channel"),
+    .setDescription("Thoát kênh voice chat"),
   async execute(interaction) {
     const memberVoice = interaction.member.voice;
     if (!memberVoice.channel) {
@@ -14,7 +14,7 @@ module.exports = {
 
     const connection = getVoiceConnection(memberVoice.channel.guildId);
     if (connection) {
-      await interaction.reply("Left");
+      await interaction.reply("Bye bye");
       connection.destroy();
       return;
     }

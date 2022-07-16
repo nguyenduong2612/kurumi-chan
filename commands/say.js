@@ -11,6 +11,10 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    await interaction.reply(interaction.options.data[0].value);
+    await interaction.reply({
+      content: "Done",
+      ephemeral: true,
+    }),
+    await interaction.channel.send(interaction.options.getString("input"));
   },
 };

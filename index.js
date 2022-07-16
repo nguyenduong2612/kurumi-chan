@@ -14,6 +14,7 @@ const client = new Client({
     Intents.FLAGS.GUILD_VOICE_STATES,
   ],
 });
+module.exports = client;
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, "commands");
@@ -47,7 +48,7 @@ client.on("interactionCreate", async (interaction) => {
   } catch (error) {
     console.error(error);
     await interaction.reply({
-      content: "There was an error while executing this command!",
+      content: "Có lỗi khi thực hiện lệnh!",
       ephemeral: true,
     });
   }
